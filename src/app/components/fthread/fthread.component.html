@@ -1,0 +1,13 @@
+<mat-list-item class="list-item" style="cursor: pointer" [routerLink]="['/fthread-page']" [queryParams]="{fthreadId: fthread.id}">
+        <div class="box-item">
+                <div class="item-text">
+                        <span matListItemTitle class="list-item-title">{{fthread.name}}</span>
+                        <span matListItemLine class="list-item-desc">{{fthread.text}}</span>
+                        <span matListItemLine class="list-item-author">Enviado por: {{name}}</span>
+                        <span *ngIf="showForum" matListItemLine class="list-item-title">Fórum: {{forum}}</span>
+                </div>
+
+                <app-fthread-reaction [fthreadId]="id? id : 0" (scoreOutput)="receiveScore($event)"></app-fthread-reaction>   
+        </div>
+        
+</mat-list-item>

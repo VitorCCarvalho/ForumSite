@@ -1,0 +1,41 @@
+<mat-dialog-content>
+    <h2 class="title-login" mat-dialog-title>Cadastro</h2>
+    <form class="form-signup" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+      <mat-form-field class="form-user">
+        <mat-label>Nome de Exibição</mat-label>
+        <input matInput id="user" [formControl]="user" placeholder="Ex. João da Silva">
+        <mat-error *ngIf="(user.hasError('required'))">Nome de Exibição é <strong>necessário</strong></mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-username">
+        <mat-label>Nome de Usuário</mat-label>
+        <input matInput id="username" [formControl]="username" placeholder="Ex. Joao123">
+        <mat-error *ngIf="(username.hasError('required'))">Nome de Usuário é <strong>necessário</strong></mat-error>
+      </mat-form-field>
+  
+      <mat-form-field class="form-email">
+        <mat-label>E-mail</mat-label>
+        <input type="email" matInput id="email" [formControl]="email" placeholder="Ex. joao@gmail.com">
+        <mat-error *ngIf="(email.hasError('required'))">E-mail é <strong>necessário</strong></mat-error>
+        <mat-error *ngIf="(email.hasError('email'))">E-mail não está no formato correto</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-password">
+        <mat-label>Senha</mat-label>
+        <input type="password" matInput formControlName="password" [formControl]="password" id="password">
+        <mat-error *ngIf="(password.hasError('required'))">Senha é <strong>necessária</strong></mat-error>
+        <mat-error *ngIf="(signupForm.hasError('confirmPasswordValidator'))">Senhas não estão iguais</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-repassword">
+        <mat-label>Confirmação da Senha</mat-label>
+        <input type="password" matInput formControlName="repassword" [formControl]="repassword" id="repassword">
+        <mat-error *ngIf="(repassword.hasError('required'))">Confirmação da senha é <strong>necessária</strong></mat-error>
+        <mat-error *ngIf="(signupForm.errors?.['PasswordNoMatch'])">Senhas não estão iguais</mat-error>
+      </mat-form-field>
+
+        <button type="submit" class="btn-submit">Cadastro</button>
+      </form>
+      <a class="link-login" (click)="openLogin()">Voltar para login</a>
+      <div>{{textResponse}}</div>
+  </mat-dialog-content>

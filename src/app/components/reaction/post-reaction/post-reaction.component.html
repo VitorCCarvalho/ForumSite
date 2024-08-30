@@ -1,0 +1,23 @@
+<div class="box-like">
+
+    <div class="box-reaction">
+        <button [ngClass]="classLikes">
+            <fa-icon class="icon-like" [icon]="faPlus" size="sm"></fa-icon> 
+        </button>
+        <div *ngIf="score > 0" class="positive">
+            +{{score}}
+        </div>
+        <div *ngIf="score == 0" class="item-score neutral">
+                {{score}}
+        </div> 
+        <div *ngIf="score <0" class="item-score negative">
+                {{score}}
+        </div> 
+        <button [ngClass]="classDislikes">
+            <fa-icon class="icon-dislike" [icon]="faMinus" size="sm"></fa-icon>
+        </button> 
+    </div>
+     
+
+    
+</div>

@@ -1,0 +1,31 @@
+<a class="link-user navbar-brand text-light" data-bs-toggle="modal" data-bs-target="#userModal">Conta</a>
+
+<div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="userModalLabel">Tela de Login</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Usuário</label>
+            <input id="input-username" type="text" class="form-control" placeholder="Usuário">
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Senha</label>
+            <input id="input-password" type="password" class="form-control" placeholder="Senha">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div>
+            <button type="button" class="btn btn-primary" (click)="LoginUser()">Login</button>
+          </div>
+          <div>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" [routerLink]="['/signup-page']">Cadastrar</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>

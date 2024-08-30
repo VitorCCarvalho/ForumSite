@@ -1,0 +1,22 @@
+<mat-dialog-content>
+  <h2 class="title-login" mat-dialog-title>Login</h2>
+  <form class="form-login" (ngSubmit)="onSubmit()">
+      <mat-form-field class="form-email">
+        <mat-label>Usuário</mat-label>
+        <input type="email" matInput [formControl]="userFormControl" placeholder="Ex. Usuário123">
+        <mat-error *ngIf="(userFormControl.hasError('required'))">Usuário é <strong>necessário</strong></mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-senha">
+        <mat-label>Senha</mat-label>
+        <input type="password" matInput [formControl]="passwordFormControl">
+        <mat-error *ngIf="(passwordFormControl.hasError('required'))">Senha é <strong>necessária</strong></mat-error>
+      </mat-form-field>
+
+      <button type="submit" class="btn-submit">Login</button>
+    </form>
+    <a class="link-signup" (click)="openSignUp()">Não possui conta? Cadastre-se aqui</a>
+    <div>{{textResponse}}</div>
+</mat-dialog-content>
+
+
