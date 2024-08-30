@@ -1,0 +1,17 @@
+<div class="container">
+        <div class="header">
+            <div class="d-flex flex-row justify-content-between border-bottom mb-4">
+                <h3 class="title">Threads</h3>
+                <a class="link-newthread" (click)="verifySession()">
+                    <p class="text-light no-decoration">Criar Thread</p>
+                </a>
+            </div>
+        </div>
+
+        <div class="list-wrapper">
+            <div *ngFor="let fthread of listaFThreads">
+                <!-- <app-fthread [id]="fthread.id? fthread.id : -1"></app-fthread> -->
+                <div class="divider"></div>
+            </div>
+        </div>
+</div>
