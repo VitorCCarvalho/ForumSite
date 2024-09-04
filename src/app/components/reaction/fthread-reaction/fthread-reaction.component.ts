@@ -8,6 +8,7 @@ import { jwtDecode } from 'jwt-decode';
 
 @Component({
   selector: 'app-fthread-reaction',
+  standalone: true,
   templateUrl: './fthread-reaction.component.html',
   styleUrls: ['./fthread-reaction.component.css']
 })

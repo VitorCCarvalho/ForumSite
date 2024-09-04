@@ -3,18 +3,17 @@ import { PostService } from './post.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { Post } from './post';
 import { User } from '../user/user';
+import { PostReactionComponent } from '../reaction/post-reaction/post-reaction.component';
 
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
-import { faHeartBroken } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-post',
+  standalone: true,
+  imports: [PostReactionComponent],
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.css']
 })
 export class PostComponent implements OnInit{
-  faHeart = faHeart
-  faHeartBroken = faHeartBroken
   constructor(private postService: PostService, private userService: UserService){}
 
   @Input() id : number = 0

@@ -10,6 +10,7 @@ import { faMinusCircle } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-post-reaction',
   templateUrl: './post-reaction.component.html',
+  standalone: true,
   styleUrls: ['./post-reaction.component.css']
 })
 export class PostReactionComponent {

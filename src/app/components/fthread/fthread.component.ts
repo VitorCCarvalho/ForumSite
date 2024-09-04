@@ -2,19 +2,19 @@ import { FthreadReactionService } from './../reaction/fthread-reaction/fthread-r
 import { Component, Input, OnInit } from '@angular/core';
 import { FThread } from './fthread';
 import { FThreadService } from './fthread.service';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
-import { faHeartBroken } from '@fortawesome/free-solid-svg-icons';
 import { UserService } from '../user/user.service';
 import { ForumService } from '../forum/forum.service';
+import { RouterLink } from '@angular/router';
+import { FthreadReactionComponent } from '../reaction/fthread-reaction/fthread-reaction.component';
 
 @Component({
   selector: 'app-fthread',
+  standalone: true,
+  imports: [ RouterLink, FthreadReactionComponent ],
   templateUrl: './fthread.component.html',
   styleUrls: ['./fthread.component.css']
 })
 export class FthreadComponent implements OnInit{
-  faHeart = faHeart
-  faHeartBroken = faHeartBroken
   isHover = false
   
   constructor(private fthreadService : FThreadService, 

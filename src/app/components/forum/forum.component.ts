@@ -1,9 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Forum } from './forum'
 import { ForumService } from './forum.service'
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-forum',
+  standalone: true,
+  imports: [ RouterLink, RouterLinkActive ],
   templateUrl: './forum.component.html',
   styleUrls: ['./forum.component.css']
 })
