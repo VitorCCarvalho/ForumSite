@@ -9,7 +9,7 @@ import { PostReaction } from './post-reaction';
 })
 export class PostReactionService {
 
-  private readonly API = 'https://localhost:7082/postreaction'
+  private readonly API = 'http://api-dev.eba-h9umdcqm.us-east-1.elasticbeanstalk.com/postreaction'
 
   constructor(private http: HttpClient) { }
 
