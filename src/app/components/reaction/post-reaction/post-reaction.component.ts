@@ -3,20 +3,18 @@ import { Component, Input, OnInit } from '@angular/core';
 import { PostReaction } from './post-reaction';
 import { PostReactionService } from './post-reaction.service';
 import { jwtDecode } from 'jwt-decode';
+import { NgClass } from '@angular/common';
 
-import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
-import { faMinusCircle } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-post-reaction',
   templateUrl: './post-reaction.component.html',
   standalone: true,
+  imports: [ NgClass ],
   styleUrls: ['./post-reaction.component.css']
 })
 export class PostReactionComponent {
-  faPlus = faPlusCircle
-  faMinus = faMinusCircle
-  
   constructor(private service: PostReactionService){}
 
   @Input() postId: number = 0

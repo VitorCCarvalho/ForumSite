@@ -1,20 +1,20 @@
 import { FthreadReactionService } from './fthread-reaction.service';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 
-import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
-import { faMinusCircle } from '@fortawesome/free-solid-svg-icons';
+
 import { FthreadReaction } from './fthread-reaction';
 import { jwtDecode } from 'jwt-decode';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-fthread-reaction',
   standalone: true,
+  imports: [ NgClass ],
   templateUrl: './fthread-reaction.component.html',
   styleUrls: ['./fthread-reaction.component.css']
 })
 export class FthreadReactionComponent implements OnInit{
-  faPlus = faPlusCircle
-  faMinus = faMinusCircle
+
 
   constructor(private service : FthreadReactionService){}
 
