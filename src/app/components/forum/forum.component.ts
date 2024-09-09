@@ -8,7 +8,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   standalone: true,
   imports: [ RouterLink, RouterLinkActive ],
   templateUrl: './forum.component.html',
-  styleUrls: ['./forum.component.css']
+  styleUrls: ['./forum.component.scss']
 })
 export class ForumComponent implements OnInit{
 
