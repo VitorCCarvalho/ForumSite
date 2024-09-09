@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class PostService {
 
-  private readonly API = 'http://api-dev.eba-h9umdcqm.us-east-1.elasticbeanstalk.com/post'
+  private readonly API = 'http://forumapi-env.eba-h9umdcqm.us-east-1.elasticbeanstalk.com/post'
 
   constructor(private http: HttpClient) { }
 

@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class FthreadReactionService {
 
-  private readonly API = 'http://api-dev.eba-h9umdcqm.us-east-1.elasticbeanstalk.com/fthreadreaction'
+  private readonly API = 'http://forumapi-env.eba-h9umdcqm.us-east-1.elasticbeanstalk.com/fthreadreaction'
 
   constructor(private http: HttpClient) { }
 

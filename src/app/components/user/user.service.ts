@@ -12,7 +12,7 @@ export class UserService {
 
   headers = new HttpHeaders({ 'responseType': 'text' })
 
-  private readonly API = 'http://api-dev.eba-h9umdcqm.us-east-1.elasticbeanstalk.com/user'
+  private readonly API = 'http://forumapi-env.eba-h9umdcqm.us-east-1.elasticbeanstalk.com/user'
 
   constructor(private http: HttpClient) { }
 
