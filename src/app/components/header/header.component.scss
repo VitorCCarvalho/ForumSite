@@ -1,0 +1,47 @@
+/* Estilos gerais do header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: inherit;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    height: 10vh;
+
+    border-bottom: 2px solid var(--border-black);
+}
+
+/* Logo à esquerda */
+header .logo img {
+    width: auto;
+    max-height: 8vh;
+    cursor: pointer
+}
+
+/* Barra de busca centralizada */
+.search-bar {
+    display: flex;
+    justify-content: center;
+    width: 40vw;
+    border: none;
+    font-size: 1rem;
+    
+    
+}
+
+.search-bar:focus{
+    border: 0px
+}
+
+
+
+/* Botão de usuário à direita */
+.user-btn {
+    cursor: pointer;
+    max-height: 8vh;
+}
+
+.user-btn img{
+    height: 3vh
+}
+
