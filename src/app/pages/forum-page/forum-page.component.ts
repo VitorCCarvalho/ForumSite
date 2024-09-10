@@ -4,10 +4,13 @@ import { FThreadService } from '../../components/fthread/fthread.service';
 import { ForumService } from '../../components/forum/forum.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Forum } from '../../components/forum/forum';
+import { FthreadComponent } from '../../components/fthread/fthread.component';
 
 
 @Component({
   selector: 'app-forum-page',
+  standalone: true,
+  imports: [ FthreadComponent ],
   templateUrl: './forum-page.component.html',
   styleUrls: ['./forum-page.component.scss']
 })

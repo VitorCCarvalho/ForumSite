@@ -1,17 +1,19 @@
-<div class="container">
-        <div class="header">
-            <div class="d-flex flex-row justify-content-between border-bottom mb-4">
-                <h3 class="title">Threads</h3>
-                <a class="link-newthread" (click)="verifySession()">
-                    <p class="text-light no-decoration">Criar Thread</p>
-                </a>
-            </div>
+<div class="section-wrapper">
+        <div class="header-fthreads">
+            <div class="section-title">Threads</div>
+            <a class="link-newthread" (click)="verifySession()">
+                <p class="text-light no-decoration">Criar Thread</p>
+            </a>
+            
         </div>
 
         <div class="list-wrapper">
-            <div *ngFor="let fthread of listaFThreads">
-                <!-- <app-fthread [id]="fthread.id? fthread.id : -1"></app-fthread> -->
-                <div class="divider"></div>
-            </div>
+            @for(fthread of listaFThreads; track $index){
+                <div class="item-wrapper">
+                    <app-fthread [id]="fthread.id? fthread.id : -1"></app-fthread>
+
+                </div>
+            }
+
         </div>
 </div>
