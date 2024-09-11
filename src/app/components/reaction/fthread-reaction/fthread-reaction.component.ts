@@ -11,7 +11,7 @@ import { NgClass } from '@angular/common';
   standalone: true,
   imports: [ NgClass ],
   templateUrl: './fthread-reaction.component.html',
-  styleUrls: ['./fthread-reaction.component.css']
+  styleUrls: ['./fthread-reaction.component.scss']
 })
 export class FthreadReactionComponent implements OnInit{
 
@@ -31,7 +31,9 @@ export class FthreadReactionComponent implements OnInit{
   classDislikes: string = "dislikes"
   likeCount: number = 0
   dislikeCount: number = 0
+
   ngOnInit(): void {
+    let storage = sessionStorage
     var numberFThreadId : number = +this.fthreadId 
     this.service.listarPorFThread(numberFThreadId).subscribe((listaFthreadReactions) => {
       this.listaFthreadReactions = listaFthreadReactions
@@ -41,8 +43,8 @@ export class FthreadReactionComponent implements OnInit{
       this.likeCount = this.likes.length
       this.dislikeCount = this.dislikes.length
 
-      this.verifyLike()
-      this.verifyDislike();
+      this.verifyLike(storage)
+      this.verifyDislike(storage);
     })
 
     this.service.buscarScore(numberFThreadId).subscribe((score) => {
@@ -52,8 +54,10 @@ export class FthreadReactionComponent implements OnInit{
     })
   }
 
-  verifyLike(){
-    var userSession: any = sessionStorage.getItem("jwt-session")
+  
+
+  verifyLike(storage: Storage){
+    var userSession: any = storage.getItem("jwt-session")
     if(userSession != null){
       var decodedSession: any = jwtDecode(userSession)
       var userId = decodedSession.id
@@ -70,8 +74,8 @@ export class FthreadReactionComponent implements OnInit{
     }
   }
 
-  verifyDislike(){
-    var userSession: any = sessionStorage.getItem("jwt-session")
+  verifyDislike(storage: Storage){
+    var userSession: any = storage.getItem("jwt-session")
     if(userSession != null){
       var decodedSession: any = jwtDecode(userSession)
       var userId = decodedSession.id

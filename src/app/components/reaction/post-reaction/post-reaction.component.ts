@@ -12,7 +12,7 @@ import { NgClass } from '@angular/common';
   templateUrl: './post-reaction.component.html',
   standalone: true,
   imports: [ NgClass ],
-  styleUrls: ['./post-reaction.component.css']
+  styleUrls: ['./post-reaction.component.scss']
 })
 export class PostReactionComponent {
   constructor(private service: PostReactionService){}

@@ -2,7 +2,7 @@
 
     <div class="box-reaction">
         <button [ngClass]="classLikes">
-            <!-- <fa-icon class="icon-like" [icon]="faPlus" size="sm"></fa-icon>  -->
+            <img class="img img-like" src="../../../../assets/png/icon-plus.png">
         </button>
         @if(score > 0){
             <div class="positive">
@@ -18,13 +18,10 @@
             <div class="item-score negative">
                 {{score}}
             </div> 
-        }
-        
+        } 
         <button [ngClass]="classDislikes">
-            <!-- <fa-icon class="icon-dislike" [icon]="faMinus" size="sm"></fa-icon> -->
+            <img class="img img-dislike" src="../../../../assets/png/icon-minus.png">
         </button> 
     </div>
-     
 
-    
 </div>

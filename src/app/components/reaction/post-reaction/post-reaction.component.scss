@@ -1,0 +1,109 @@
+.box-reaction{
+    height: 100%;
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
+    padding: 0.05rem;
+    border: 0.5px solid var(--border-black);
+    border-radius: 30%;
+
+    background-color: var(--bg-btn);
+}
+
+.img{
+    background-color: transparent;
+    width: 1.2rem;
+    height: 1.2rem;
+    filter: grayscale(100%) invert(100%);
+    transition: linear 0.2s;
+    
+}
+
+.img:hover{
+    filter: grayscale(0%) invert(0%);
+    transition: linear 0.2s;
+}
+
+.box-like{
+    display:flex;
+    flex-direction: column;
+}
+
+.positive{
+    background-color: transparent;
+    color: #ff5454;
+}
+
+.neutral{
+    background-color: transparent;
+    color: #c0b4bc;
+}
+
+.negative{
+    background-color: transparent;
+    color: #616bff;
+}
+
+.likes, .dislikes{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: #c0b4bc;
+    transition: linear 0.3s;
+    border: 0px;
+    padding: 0.4rem;
+    background-color: transparent;
+
+}
+
+.likes:hover{
+    color: #ff5454;
+    transition: linear 0.3s;
+    cursor: pointer;
+    border-color: #ff5454;
+}
+
+.likes-selected{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: #ff5454;
+    cursor: pointer;
+    transition: linear 0.3s;
+    padding: 0.15rem;
+    background-color: transparent;
+}
+
+.likes-selected:hover{
+    color: #c0b4bc;
+    transition: linear 0.3s;
+    cursor: pointer;
+    border-color: #c0b4bc;
+}
+
+.dislikes:hover{
+    color:#616bff;
+    transition: linear 0.3s;
+    cursor: pointer;
+}
+
+.dislikes-selected{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: #616bff;
+    cursor: pointer;
+    transition: linear 0.3s;
+    border: 0px;
+    padding: 0.15rem;
+    background-color: transparent;
+}
+
+.dislikes-selected:hover{
+    color:#c0b4bc;
+    transition: linear 0.3s;
+    cursor: pointer;
+    border-color: #c0b4bc;
+}
