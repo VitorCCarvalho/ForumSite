@@ -1,8 +1,10 @@
-<div class="home-wrapper">
-    <div class="title">Forums</div>
+<div class="section-wrapper">
+    <div class="section-title">Forums</div>
+    <div class="list-wrapper">
         @for (forum of listaForums; track $index) {
-            <div class="forum-wrapper">
+            <div class="item-wrapper">
                 <app-forum [id]="forum.id"></app-forum>
             </div>
         }
+    </div>   
 </div>
