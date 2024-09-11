@@ -1,0 +1,30 @@
+<div class="box-fthread">
+    <div class="box-text">
+        <div class="text-title">{{fthread.name}}</div>
+        <p class="text-thread">{{fthread.text}}</p>
+        <p class="text-author">Criado por {{user.name}}</p>
+    </div>
+    <div class="interact-wrapper">
+        <app-fthread-reaction [fthreadId]="fthreadId? fthreadId : 0"></app-fthread-reaction>
+        <div class="comment-wrapper">
+            <img class="img-comment" src="../../../../assets/png/icon-comment.png">
+            <div class="comment-count">{{commentCount}}</div> 
+        </div>
+    </div>
+</div>
+
+
+
+<div class="list-wrapper">
+    @for (post of listaPosts; track $index) {
+        <app-post [post]="post"></app-post>
+    }
+</div>
+
+<form (submit)="sendReply()">
+    <!-- Caixa de texto -->
+    <input type="text" id="text-reply" name="resposta" placeholder="Digite sua resposta..." required>
+
+    <!-- Botão de envio -->
+    <button type="submit">Enviar Resposta</button>
+</form>
