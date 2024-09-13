@@ -1,8 +1,8 @@
 <div class="list-item">
-    <div class="box-post">
-        <div class="box-text">
-            <span class="text-light text-wrap word-break">{{user.name}}</span>
-            <span class="forum-desc text-light lh-sm word-break mb-2">{{post.text}}</span>
+    <div class="box-item">
+        <div class="item-text">
+            <span class="text-author">{{user.name}}</span>
+            <span class="text-post">{{post.text}}</span>
         </div>
         <app-post-reaction [postId]="id ? id : 0"></app-post-reaction>
     </div>
