@@ -1,3 +1,12 @@
+.fthread-page-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 2rem;
+
+}
+
 .box-fthread{
     width: 100%;
     display: flex;
@@ -5,11 +14,9 @@
     align-items: center;
     gap: 8px;
 
-    padding-bottom: 0.5%;
+    padding-bottom: 0.8%;
     border-bottom: 0.5px solid var(--border-black);
 }
-
-
 
 .box-text{
     width: 80%;
@@ -19,7 +26,11 @@
 }
 
 .text-title{
-    font-size: 1.5rem
+    font-size: 1.7rem
+}
+
+.text-thread{
+    font-size: 1.1rem;
 }
 
 .interact-wrapper{
@@ -29,7 +40,7 @@
     align-items: center;
     gap: 2%;
 
-    height: 2rem;
+    height: 1.5rem;
 }
 
 .comment-wrapper{
@@ -55,6 +66,50 @@
 .comment-count{
     background-color: transparent;
 }
+
+.form-reply{
+    width: 80%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border: 0.5px solid var(--border-black);
+    border-radius: 25px;
+    padding: 10px;
+}
+
+.text-reply{
+    border: 0px;
+    width: 100%;
+    height: 1.5rem;
+}
+
+.text-reply:focus{
+    border: 0px;
+    outline: none
+}
+
+.text-reply:focus + .btn-reply{
+    display: flex;
+}
+
+.btn-reply{
+    display: none;
+    width: fit-content;
+    background-color: var(--bg-btn);
+    border: none;
+    border-radius: 25px;
+    align-self: flex-end;
+    padding: 0.8rem;
+
+    cursor: pointer;
+}
+
+.btn-reply:hover{
+    filter: brightness(120%);
+}
+
+
 
 .list-wrapper{
     width: 100%;
