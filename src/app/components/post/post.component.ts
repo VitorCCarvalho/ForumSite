@@ -11,14 +11,14 @@ import { PostReactionComponent } from '../reaction/post-reaction/post-reaction.c
   standalone: true,
   imports: [PostReactionComponent],
   templateUrl: './post.component.html',
-  styleUrls: ['./post.component.css']
+  styleUrls: ['./post.component.scss']
 })
 export class PostComponent implements OnInit{
   constructor(private postService: PostService, private userService: UserService){}
 
-  @Input() id : number = 0
+  @Input() id : number = -1
   
-  post : Post = {
+  @Input() post : Post = {
     "id": 2,
     "threadId": 10,
     "text": "TestePost2",
@@ -30,9 +30,13 @@ export class PostComponent implements OnInit{
   user!: User 
 
   ngOnInit(): void {
-    this.postService.buscarPorId(this.id).subscribe((post) => {
-      this.post = post
-    })
+    if(this.id !== -1){
+      this.postService.buscarPorId(this.id).subscribe((post) => {
+        this.post = post
+      })
+    }
+
+    
 
     this.userService.buscarPorId(this.post.userId).subscribe((user) => {
       this.user = user

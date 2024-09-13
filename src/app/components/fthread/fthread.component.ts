@@ -12,7 +12,7 @@ import { FthreadReactionComponent } from '../reaction/fthread-reaction/fthread-r
   standalone: true,
   imports: [ RouterLink, FthreadReactionComponent ],
   templateUrl: './fthread.component.html',
-  styleUrls: ['./fthread.component.css']
+  styleUrls: ['./fthread.component.scss']
 })
 export class FthreadComponent implements OnInit{
   isHover = false
