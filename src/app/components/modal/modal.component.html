@@ -1,0 +1,6 @@
+@if(show){
+    <div class="modal">
+        <ng-content></ng-content>
+    </div>
+    <div @overlay class="overlay" (click)="toggle()"></div>
+}
