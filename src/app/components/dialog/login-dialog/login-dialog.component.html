@@ -1,0 +1,10 @@
+<div class="login-dialog">
+    <h2 class="title-login">Login</h2>
+    <form class="form-login" [formGroup]="formLogin" (submit)="onSubmit()">
+        <input id="user" formControlName="user" placeholder="user"> 
+
+        <input id="password" type="password" formControlName="password" placeholder="senha">
+
+        <button type="submit" class="btn-submit">Login</button>
+    </form>
+</div>
