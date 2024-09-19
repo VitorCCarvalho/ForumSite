@@ -1,3 +1,4 @@
+import { StorageService } from './../../../services/storage.service';
 import { UserService } from './../../user/user.service';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
@@ -17,7 +18,7 @@ export class LoginDialogComponent {
     password: new FormControl('')
   })
 
-  constructor(private userService: UserService){}
+  constructor(private userService: UserService, private storageService: StorageService){}
 
   onSubmit(){
     if(this.formLogin.controls['user'].value != null && this.formLogin.controls['password'].value != null){
@@ -32,14 +33,11 @@ export class LoginDialogComponent {
       password : password? password: ""
     }
     this.userService.login(login).subscribe((httpResponse: any) => {
-      sessionStorage.setItem("jwt-session", httpResponse.response);
-      // this.setUserSession();
-      // this.textResponse = "Login efetuado!";
-      
+      this.storageService.setItem("jwt-session", httpResponse.response);
+      console.log(this.storageService.getItem("jwt-session"))
     }, 
     err => {
-      // this.textResponse = err.error;
-      console.log("não foi")
+      console.log(err.error)
     })
   }
 }

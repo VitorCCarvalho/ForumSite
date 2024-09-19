@@ -1,0 +1,40 @@
+.login-dialog{
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.title-login{
+    color: var(--bg);
+    background-color: inherit;
+}
+
+.form-login{
+    background-color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    color: var(--border-black);
+}
+
+.form-login input{
+    background-color: transparent;
+    border: 0.5px solid var(--border-black);
+    border-radius: 25px;
+    height: 32px;
+}
+
+.form-login button{
+    background-color: transparent;
+    border: 0.5px solid var(--border-black);
+    border-radius: 25px;
+    height: 32px;
+    color: var(--border-black);
+    cursor: pointer
+}
+
+.form-login button:hover{
+    background-color: grayscale(100%);
+}
