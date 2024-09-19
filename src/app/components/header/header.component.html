@@ -10,10 +10,12 @@
   
 
   <!-- Botão de usuário à direita -->
-  <div class="user-btn">
+  <div class="user-btn" (click)="modal.toggle()">
       <img src="../../../assets/png/icon-user.png" alt="User">
   </div>
 </header>
+
+<app-modal #modal><app-login-dialog></app-login-dialog></app-modal>
 
 
 
