@@ -1,10 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 *{
-    background-color: #181414;
+    --bg: #181414;
     --border-black: #404444;
     --bg-btn: #28242c;
     color: rgb(238, 238, 238);
-
+    background-color: var(--bg);
 
     .section-wrapper{
         height: 100%;
