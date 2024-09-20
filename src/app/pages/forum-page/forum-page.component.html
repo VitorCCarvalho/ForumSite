@@ -1,15 +1,19 @@
-<div class="section-wrapper">
+<div class="section-wrapper" >
         <div class="header-fthreads">
-            <div class="section-title">Threads</div>
-            <a class="link-newthread" (click)="verifySession()">
-                <p class="text-light no-decoration">Criar Thread</p>
-            </a>
-            
+            <div class="line-title">
+                <div class="section-title">{{forum.name}}</div>
+                <a class="link-newthread" (click)="verifySession()">
+                    <p class="text-light no-decoration">Criar Thread</p>
+                </a>
+            </div>
+            <div class="line-desc">
+                {{forum.description}}
+            </div>
         </div>
 
         <div class="list-wrapper">
             @for(fthread of listaFThreads; track $index){
-                <div class="item-wrapper">
+                <div class="item-wrapper" [ngClass]="finishLoading">
                     <app-fthread [id]="fthread.id? fthread.id : -1"></app-fthread>
                 </div>
             }

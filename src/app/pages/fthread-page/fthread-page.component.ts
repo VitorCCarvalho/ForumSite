@@ -1,5 +1,5 @@
 import { PostService } from '../../components/post/post.service';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FThread } from '../../components/fthread/fthread';
 import { Post } from '../../components/post/post';
 import { FThreadService } from '../../components/fthread/fthread.service';
@@ -8,13 +8,14 @@ import { UserService } from '../../components/user/user.service';
 import { User } from '../../components/user/user';
 import { FthreadReactionComponent } from '../../components/reaction/fthread-reaction/fthread-reaction.component';
 import { PostComponent } from '../../components/post/post.component';
+import { NgClass } from '@angular/common';
 
 
 
 @Component({
   selector: 'app-fthread-page',
   standalone: true,
-  imports: [FthreadReactionComponent, PostComponent],
+  imports: [FthreadReactionComponent, PostComponent, NgClass],
   templateUrl: './fthread-page.component.html',
   styleUrls: ['./fthread-page.component.scss']
 })
@@ -25,8 +26,8 @@ export class FthreadPageComponent implements OnInit{
   fthread: FThread ={
     id: 0,
     forumID: 0,
-    name: "testeFThread2",
-    text: "testeTextFThread",
+    name: "",
+    text: "",
     sticky: false,
     active: true,
     dateCreated:  new Date("2024-01-25T11:23:31.3875008-03:00"),
@@ -37,16 +38,18 @@ export class FthreadPageComponent implements OnInit{
   };
 
   user: User = {
-    id: "teste",
-    name: "teste",
-    username: "teste",
-    description: "testeD",
-    email: "teste",
+    id: "",
+    name: "",
+    username: "",
+    description: "",
+    email: "",
     lastLogin: new Date("2024-01-25T11:23:31.3875008-03:00"),
     dateJoined: new Date("2024-01-25T11:23:31.3875008-03:00")
   }
 
   commentCount: number = 0
+
+  finishLoading: string = "loading"
 
   constructor(private postService: PostService, 
               private fthreadService: FThreadService, 
@@ -70,14 +73,15 @@ export class FthreadPageComponent implements OnInit{
               this.user = user
             })
           }
-  
+          
         })
-      })
-      
-      
 
+        this.finishLoading = "loaded"
+      })
     }
   }
+
+
 
   sendReply(){
     var reply = (<HTMLInputElement>document.getElementById("text-reply")).value

@@ -1,4 +1,4 @@
-<div class="list-item" [routerLink]="['/fthread-page']" [queryParams]="{fthreadId: fthread.id}">
+<div class="list-item" [routerLink]="['/fthread-page']" [queryParams]="{fthreadId: fthread.id}" [ngClass]="finishLoading">
         <div class="box-item">
                 <div class="item-text">
                         <span class="text-title">{{fthread.name}}</span>

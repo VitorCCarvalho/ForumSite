@@ -14,10 +14,13 @@ export class HomeComponent implements OnInit{
   listaForums : Forum[] = [];
   constructor(private service: ForumService){} 
 
+
   ngOnInit(): void {
     this.service.listar().subscribe((listaForums) => {
       this.listaForums = listaForums
+      
     })
   }
+
 
 }
