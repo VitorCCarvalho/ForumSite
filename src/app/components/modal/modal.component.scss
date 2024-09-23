@@ -1,5 +1,5 @@
 .modal {
-    background: #fff;
+    background: #585757;
     border-radius: 8px;
     box-shadow: 0 2px 8px #333;
     min-width: 320px;
@@ -13,6 +13,8 @@
     max-height: 90vmax;
     overflow-y: hidden;
     z-index: 1;
+
+    color: white
 }
 
 .overlay {
