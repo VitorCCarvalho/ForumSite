@@ -1,0 +1,23 @@
+<div class="signup-dialog">
+    <h2 class="title-signup">Cadastro</h2>
+    <form class="form-signup" [formGroup]="formSignup" (submit)="onSubmit()">
+        <input id="username" formControlName="username" placeholder="username"> 
+        @if(username.value != null && username.hasError('required')){<div class="error-txt">É necessário inserir o username</div>}
+
+        <input id="name" formControlName="name" placeholder="nome"> 
+        @if(name.value != null && name.hasError('required')){<div class="error-txt">É necessário inserir o nome</div>}
+
+        <input id="email" formControlName="email" placeholder="email">
+        @if(email.value != null && email.hasError('required')){<div class="error-txt">É necessário inserir o email</div>} 
+
+        <input id="password" type="password" formControlName="password" placeholder="senha">
+        @if(password.value != null && password.hasError('required')){<div class="error-txt">É necessário inserir a senha</div>}
+        @if(formSignup.hasError('PasswordNoMatch')){<div class="error-txt">As senhas não coincidem</div>}
+
+        <input id="repassword" type="password" formControlName="repassword" placeholder="Confirme a senha">
+        @if(repassword.value != null && repassword.hasError('required')){<div class="error-txt">É necessário confrimar a senha</div>}
+        @if(formSignup.hasError('PasswordNoMatch')){<div class="error-txt">As senhas não coincidem</div>}
+
+        <button type="submit" class="btn-submit">Inscrever-se</button>
+    </form>
+</div>

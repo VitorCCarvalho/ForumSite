@@ -1,0 +1,42 @@
+.signup-dialog{
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.title-signup{
+    background-color: inherit;
+}
+
+.form-signup{
+    background-color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-signup input{
+    background-color: transparent;
+    border: 0.5px solid var(--border-black);
+    border-radius: 25px;
+    height: 32px;
+}
+
+.form-signup button{
+    background-color: transparent;
+    border: 0.5px solid var(--border-black);
+    border-radius: 25px;
+    height: 32px;
+
+    cursor: pointer
+}
+
+.form-signup button:hover{
+    background-color: grayscale(100%);
+}
+
+.error-txt{
+    color: red;
+}
