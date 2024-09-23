@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { User } from './user';
 import { Login } from './login';
 import { SignUp } from './signup';
+import { API } from '../../app.component';
 
 @Injectable({
   providedIn: 'root'
@@ -12,22 +13,22 @@ export class UserService {
 
   headers = new HttpHeaders({ 'responseType': 'text' })
 
-  private readonly API = 'http://forumapi-env.eba-h9umdcqm.us-east-1.elasticbeanstalk.com/user'
+  private readonly url = API + '/user'
 
   constructor(private http: HttpClient) { }
 
   criar(signup: SignUp): Observable<SignUp> {
-    const url = `${this.API}/signup`
+    const url = `${this.url}/signup`
     return this.http.post<SignUp>(url, signup, {headers: this.headers})
   }
 
   buscarPorId(id: string): Observable<User> {
-    const url = `${this.API}/${id}`
+    const url = `${this.url}/${id}`
     return this.http.get<User>(url)
   }
 
   login(login: Login): Observable<string>{
-    const url = `${this.API}/login`
+    const url = `${this.url}/login`
     return this.http.post<string>(url, login, {headers: this.headers})
     
   }

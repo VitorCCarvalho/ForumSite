@@ -2,46 +2,47 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FThread } from './fthread';
 import { Observable } from 'rxjs';
+import { API } from '../../app.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FThreadService {
 
-  private readonly API = 'http://forumapi-env.eba-h9umdcqm.us-east-1.elasticbeanstalk.com/fthread'
+  private readonly url =  API + '/fthread'
 
   constructor(private http: HttpClient) { }
 
   listar(): Observable<FThread[]> {
-    return this.http.get<FThread[]>(this.API)
+    return this.http.get<FThread[]>(this.url)
   }
 
   listarPorForum(forumId : number): Observable<FThread[]> {
-    const url = `${this.API}?forumId=${forumId}`
+    const url = `${this.url}?forumId=${forumId}`
     return this.http.get<FThread[]>(url)
   }
 
   listarMostLiked(period: number): Observable<FThread[]> {
-    const url = `${this.API}/most-liked/${period}`
+    const url = `${this.url}/most-liked/${period}`
     return this.http.get<FThread[]>(url)
   } 
 
   criar(fthread: FThread): Observable<FThread> {
-    return this.http.post<FThread>(this.API, fthread)
+    return this.http.post<FThread>(this.url, fthread)
   }
 
   editar(fthread: FThread): Observable<FThread> {
-    const url = `${this.API}/${fthread.id}`
+    const url = `${this.url}/${fthread.id}`
     return this.http.put<FThread>(url, fthread)
   }
 
   excluir(id: number): Observable<FThread> {
-    const url = `${this.API}/${id}`
+    const url = `${this.url}/${id}`
     return this.http.delete<FThread>(url)
   }
 
   buscarPorId(id: number): Observable<FThread> {
-    const url = `${this.API}/${id}`
+    const url = `${this.url}/${id}`
     return this.http.get<FThread>(url)
   }
 
