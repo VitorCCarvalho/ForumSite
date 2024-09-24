@@ -1,23 +1,47 @@
 <div class="signup-dialog">
-    <h2 class="title-signup">Cadastro</h2>
-    <form class="form-signup" [formGroup]="formSignup" (submit)="onSubmit()">
-        <input id="username" formControlName="username" placeholder="username"> 
-        @if(username.value != null && username.hasError('required')){<div class="error-txt">É necessário inserir o username</div>}
+    @switch(status){
+        @case("idle"){
+            <div class="idle-section" [@enterTrigger]="'fadeIn'">
+                <h2 class="title-signup">Cadastro</h2>
+                <form class="form-signup" [formGroup]="formSignup" (submit)="onSubmit()">
+                    <input id="username" formControlName="username" placeholder="username"> 
+                    @if(username.value != null && username.hasError('required')){<div class="error-txt">É necessário inserir o username</div>}
 
-        <input id="name" formControlName="name" placeholder="nome"> 
-        @if(name.value != null && name.hasError('required')){<div class="error-txt">É necessário inserir o nome</div>}
+                    <input id="name" formControlName="name" placeholder="nome"> 
+                    @if(name.value != null && name.hasError('required')){<div class="error-txt">É necessário inserir o nome</div>}
 
-        <input id="email" formControlName="email" placeholder="email">
-        @if(email.value != null && email.hasError('required')){<div class="error-txt">É necessário inserir o email</div>} 
+                    <input id="email" formControlName="email" placeholder="email">
+                    @if(email.value != null && email.hasError('required')){<div class="error-txt">É necessário inserir o email</div>} 
 
-        <input id="password" type="password" formControlName="password" placeholder="senha">
-        @if(password.value != null && password.hasError('required')){<div class="error-txt">É necessário inserir a senha</div>}
-        @if(formSignup.hasError('PasswordNoMatch')){<div class="error-txt">As senhas não coincidem</div>}
+                    <input id="password" type="password" formControlName="password" placeholder="senha">
+                    @if(password.value != null && password.hasError('required')){<div class="error-txt">É necessário inserir a senha</div>}
+                    @if(formSignup.hasError('PasswordNoMatch')){<div class="error-txt">As senhas não coincidem</div>}
 
-        <input id="repassword" type="password" formControlName="repassword" placeholder="Confirme a senha">
-        @if(repassword.value != null && repassword.hasError('required')){<div class="error-txt">É necessário confrimar a senha</div>}
-        @if(formSignup.hasError('PasswordNoMatch')){<div class="error-txt">As senhas não coincidem</div>}
+                    <input id="repassword" type="password" formControlName="repassword" placeholder="Confirme a senha">
+                    @if(repassword.value != null && repassword.hasError('required')){<div class="error-txt">É necessário confrimar a senha</div>}
+                    @if(formSignup.hasError('PasswordNoMatch')){<div class="error-txt">As senhas não coincidem</div>}
 
-        <button type="submit" class="btn-submit">Inscrever-se</button>
-    </form>
+                    <button type="submit" class="btn-submit">Inscrever-se</button>
+                </form>
+                
+                <button class="btn-switch-dialog" (click)="switchDialog()">Voltar para login</button>
+            </div>
+            
+        }
+        @case("loading"){
+            <div class="loading-section" [@enterTrigger]="'fadeIn'">
+                <div class="loadingWheel"></div>
+            </div>
+        }
+        @case("completed"){
+            <div class="completed-section" [@enterTrigger]="'fadeIn'">
+                <img class="img-ok" src="../../../../assets/png/icon-ok.png" alt="">
+                <div class="txt-ok">
+                    Cadastro efetuado
+                </div>
+            </div>
+        }
+    }
+    
+
 </div>

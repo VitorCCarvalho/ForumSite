@@ -1,10 +1,33 @@
 <div class="login-dialog">
-    <h2 class="title-login">Login</h2>
-    <form class="form-login" [formGroup]="formLogin" (submit)="onSubmit()">
-        <input id="user" formControlName="user" placeholder="user"> 
+    @switch(status){
+        @case("idle"){
+        <div class="idle-section" [@enterTrigger]="'fadeIn'">
+            <h2 class="title-login">Login</h2>
+            <form class="form-login" [formGroup]="formLogin" (submit)="onSubmit()">
+                <input id="user" formControlName="user" placeholder="user"> 
+        
+                <input id="password" type="password" formControlName="password" placeholder="senha">
+        
+                <button type="submit" class="btn-submit">Login</button>
+            </form>
+        
+            <button class="btn-switch-dialog" (click)="switchDialog()">Não possui uma conta? Cadastre-se</button>
+        </div>
+        }
+        @case("loading"){
+            <div class="loading-section" [@enterTrigger]="'fadeIn'">
+                <div class="loadingWheel"></div>
+            </div>
+        }
+        @case("completed"){
+            <div class="completed-section" [@enterTrigger]="'fadeIn'">
+                <img class="img-ok" src="../../../../assets/png/icon-ok.png" alt="">
+                <div class="txt-ok">
+                    Login efetuado
+                </div>
+            </div>
+        }
+}
 
-        <input id="password" type="password" formControlName="password" placeholder="senha">
 
-        <button type="submit" class="btn-submit">Login</button>
-    </form>
 </div>

@@ -1,16 +1,26 @@
 import { UserService } from './../../user/user.service';
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SignUp } from '../../user/signup';
 import { StorageService } from '../../../services/storage.service';
 import { confirmPasswordValidator } from './confirm-password.validator';
+import { trigger, state, style, transition, animate } from '@angular/animations';
+
 
 @Component({
   selector: 'app-signup-dialog',
   standalone: true,
   imports: [ReactiveFormsModule],
   templateUrl: './signup-dialog.component.html',
-  styleUrl: './signup-dialog.component.scss'
+  styleUrl: './signup-dialog.component.scss',
+  animations: [
+    trigger('enterTrigger',[
+      state('fadeIn', style({
+        opacity: '1',
+      })),
+      transition('void => *', [style({opacity: '0'}), animate('500ms')])
+    ])
+  ]
 })
 export class SignupDialogComponent {
   username = new FormControl(null,  [Validators.required])
@@ -29,6 +39,10 @@ export class SignupDialogComponent {
   },
     {validators: confirmPasswordValidator}
   )
+
+  @Output() chosenDialog = new EventEmitter()
+
+  status: string = "idle"
 
   constructor(private userService: UserService, private storageService: StorageService){}
 
@@ -57,6 +71,10 @@ export class SignupDialogComponent {
       console.log(response)
     })
 
+  }
+
+  switchDialog(){
+    this.chosenDialog.emit("login")
   }
 
 }
