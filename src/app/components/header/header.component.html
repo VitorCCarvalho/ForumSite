@@ -10,20 +10,24 @@
   
 
   <!-- Botão de usuário à direita -->
-  <div class="user-btn" (click)="modal.toggle()">
+  <div class="user-btn" (click)="openModal(modalTemplate)">
       <img src="../../../assets/png/icon-user.png" alt="User">
   </div>
 </header>
 
-<app-modal #modal>
+<!-- <app-modal #modal>
   @if(chosenDialog === "login"){
     <app-login-dialog (chosenDialog)="receiveChosenDialog($event)"></app-login-dialog>
   } @else {
     <app-signup-dialog (chosenDialog)="receiveChosenDialog($event)"></app-signup-dialog>
   }
   
-</app-modal>
+</app-modal> -->
 
+<ng-template #modalTemplate>
+  TESTE 
+  <app-login-dialog></app-login-dialog>
+</ng-template>
 
 
 

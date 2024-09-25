@@ -2,7 +2,7 @@ import { UserService } from './../../user/user.service';
 import { Component, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SignUp } from '../../user/signup';
-import { StorageService } from '../../../services/storage.service';
+import { StorageService } from '../../../services/storage/storage.service';
 import { confirmPasswordValidator } from './confirm-password.validator';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 
@@ -53,6 +53,7 @@ export class SignupDialogComponent {
       this.formSignup.controls['password'].value != null &&
       this.formSignup.controls['repassword'].value != null
     ){
+      this.status = "loading"
       this.signupUser(this.formSignup.controls['username'].value, this.formSignup.controls['name'].value, this.formSignup.controls['email'].value, this.formSignup.controls['password'].value, this.formSignup.controls['repassword'].value)
 
     }
@@ -68,6 +69,7 @@ export class SignupDialogComponent {
       repassword: repassword
     }
     this.userService.criar(signup).subscribe((response) => {
+      this.status = "completed"
       console.log(response)
     })
 

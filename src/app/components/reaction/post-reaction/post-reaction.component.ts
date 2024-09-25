@@ -4,6 +4,7 @@ import { PostReaction } from './post-reaction';
 import { PostReactionService } from './post-reaction.service';
 import { jwtDecode } from 'jwt-decode';
 import { NgClass } from '@angular/common';
+import { StorageService } from '../../../services/storage/storage.service';
 
 
 
@@ -15,7 +16,7 @@ import { NgClass } from '@angular/common';
   styleUrls: ['./post-reaction.component.scss']
 })
 export class PostReactionComponent {
-  constructor(private service: PostReactionService){}
+  constructor(private service: PostReactionService, private storageService: StorageService){}
 
   @Input() postId: number = 0
   @Input() userId: string = ""
@@ -23,34 +24,33 @@ export class PostReactionComponent {
   likes: PostReaction[] = []
   dislikes: PostReaction[] = []
 
-  classLikes: string = "likes"
-  classDislikes: string = "dislikes"
+  classLikes: string = "img-like"
+  classDislikes: string = "img-dislike"
   likeCount: number = 0
   dislikeCount: number = 0
   
   score: number = 0
 
   ngOnInit(): void{
-    this.service.listarPorPost(this.postId).subscribe((listaPostReactions) => {
-      this.listaPostReactions = listaPostReactions
+    if(this.postId != -1){
+    
+      this.service.listarPorPost(this.postId).subscribe((listaPostReactions) => {
+        this.listaPostReactions = listaPostReactions
 
-      this.likes = this.listaPostReactions.filter(i => i.reaction == true)
-      this.dislikes = this.listaPostReactions.filter(i => i.reaction == false)
+        this.likes = this.listaPostReactions.filter(i => i.reaction == true)
+        this.dislikes = this.listaPostReactions.filter(i => i.reaction == false)
 
-      this.likeCount = this.likes.length
-      this.dislikeCount = this.dislikes.length
-    })
+        this.likeCount = this.likes.length
+        this.dislikeCount = this.dislikes.length
+      })
 
-    this.verifyLike()
-    this.verifyDislike();
-
-    this.service.buscarScore(this.postId).subscribe((score) => {
-      this.score = score
-    })
+      this.verifyLike()
+      this.verifyDislike();
+    }
   }
   
   verifyLike(){
-    var userSession: any = sessionStorage.getItem("jwt-session")
+    var userSession: any = this.storageService.getItem("jwt-session")
     if(userSession != null){
       var decodedSession: any = jwtDecode(userSession)
       var userId = decodedSession.id
@@ -58,7 +58,7 @@ export class PostReactionComponent {
       this.service.acharReaction(this.postId, userId).subscribe((postReaction) => {
         if(postReaction != null){
           if(postReaction.reaction == true){
-            this.classLikes = "likes-selected"
+            this.classLikes = "img-likes-selected"
           } 
         }
       })
@@ -67,7 +67,7 @@ export class PostReactionComponent {
   }
 
   verifyDislike(){
-    var userSession: any = sessionStorage.getItem("jwt-session")
+    var userSession: any = this.storageService.getItem("jwt-session")
     if(userSession != null){
       var decodedSession: any = jwtDecode(userSession)
       var userId = decodedSession.id
@@ -75,7 +75,7 @@ export class PostReactionComponent {
       this.service.acharReaction(this.postId, userId).subscribe((postReaction) => {
         if(postReaction != null){
           if(postReaction.reaction == false){
-            this.classDislikes = "dislikes-selected"
+            this.classDislikes = "img-dislikes-selected"
           } 
         }
       })

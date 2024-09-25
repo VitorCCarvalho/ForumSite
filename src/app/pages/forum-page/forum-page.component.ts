@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Forum } from '../../components/forum/forum';
 import { FthreadComponent } from '../../components/fthread/fthread.component';
 import { NgClass } from '@angular/common';
+import { StorageService } from '../../services/storage/storage.service';
 
 
 @Component({
@@ -24,6 +25,7 @@ export class ForumPageComponent implements OnInit{
 
   constructor(private fthreadService: FThreadService, 
               private forumService: ForumService, 
+              private storageService: StorageService,
               private route: ActivatedRoute, 
               private router: Router){}
 
@@ -50,7 +52,7 @@ export class ForumPageComponent implements OnInit{
 
 
   verifySession(){
-    if(sessionStorage.getItem("jwt-session") != null){
+    if(this.storageService.getItem("jwt-session") != null){
       this.router.navigate(['/newThread-page'], {queryParams: {forumId:this.forum.id ? this.forum.id : -1}})
     }else {
       // this.sidebar.openLoginDialog();

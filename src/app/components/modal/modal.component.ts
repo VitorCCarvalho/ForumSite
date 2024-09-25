@@ -1,5 +1,5 @@
 import { trigger, transition, style, animate } from '@angular/animations';
-import { Component } from '@angular/core';
+import { Component, ComponentRef, ElementRef, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-modal',
@@ -32,7 +32,15 @@ import { Component } from '@angular/core';
 export class ModalComponent {
   show: boolean = false
 
-  toggle(){
-    this.show = !this.show;
+  content!: ComponentRef<Component> 
+
+  @Output() closeEvent = new EventEmitter();
+  @Output() submitEvent = new EventEmitter();
+
+  constructor(private elementRef: ElementRef){}
+
+  close(): void{
+    this.elementRef.nativeElement.remove()
+    this.closeEvent.emit()
   }
 }

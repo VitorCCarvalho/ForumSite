@@ -55,9 +55,6 @@ export class FthreadComponent implements OnInit{
           this.userService.buscarPorId(this.fthread.userId).subscribe((user) => {
             this.name = user.name
           })
-          this.fthreadReactionService.buscarScore(this.id).subscribe((score) => {
-            this.fthread.score = score
-          })
     
         }
   

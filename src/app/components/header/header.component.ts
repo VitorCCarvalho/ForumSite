@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Login } from './../user/login';
+import { ModalService } from './../../services/modal/modal.service';
+import { Component, TemplateRef } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { LoginDialogComponent } from "../dialog/login-dialog/login-dialog.component";
 import { ModalComponent } from '../modal/modal.component';
@@ -14,7 +16,19 @@ import { SignupDialogComponent } from '../dialog/signup-dialog/signup-dialog.com
 export class HeaderComponent {
   chosenDialog: string = "login"
 
+  constructor(private modalService: ModalService){}
+
   receiveChosenDialog(chosenDialog: string){
     this.chosenDialog = chosenDialog
+  }
+
+  callModal(){
+    // ModalComponent.toggle()
+  }
+
+  openModal(modalTemplate: TemplateRef<any>){
+    var login_dialog =  LoginDialogComponent
+    console.log(login_dialog)
+    this.modalService.open(modalTemplate, login_dialog).subscribe((action) => console.log(action))
   }
 }

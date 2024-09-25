@@ -13,13 +13,26 @@
     background-color: transparent;
     width: 1.2rem;
     height: 1.2rem;
-    filter: grayscale(100%) invert(100%);
-    transition: linear 0.2s;
-    
+    cursor: pointer
 }
 
-.img:hover{
+.img-like, .img-dislike{
+    filter: grayscale(100%) invert(100%);
+    transition: linear 0.2s;
+}
+
+.img-like:hover, .img-dislike:hover{
     filter: grayscale(0%) invert(0%);
+    transition: linear 0.2s;
+}
+
+.img-likes-selected, .img-disliked-selected{
+    filter: grayscale(0%) invert(0%);
+    transition: linear 0.2s;
+}
+
+.img-likes-selected:hover, .img-disliked-selected:hover{
+    filter: grayscale(100%) invert(100%);
     transition: linear 0.2s;
 }
 

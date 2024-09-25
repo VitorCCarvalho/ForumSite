@@ -15,13 +15,26 @@
     background-color: transparent;
     width: 1.2rem;
     height: 1.2rem;
-    filter: grayscale(100%) invert(100%);
-    transition: linear 0.2s;
-    
+    cursor: pointer
 }
 
-.img:hover{
+.img-like, .img-dislike{
+    filter: grayscale(100%) invert(100%);
+    transition: linear 0.2s;
+}
+
+.img-like:hover, .img-dislike:hover{
     filter: grayscale(0%) invert(0%);
+    transition: linear 0.2s;
+}
+
+.img-likes-selected, .img-disliked-selected{
+    filter: grayscale(0%) invert(0%);
+    transition: linear 0.2s;
+}
+
+.img-likes-selected:hover, .img-disliked-selected:hover{
+    filter: grayscale(100%) invert(100%);
     transition: linear 0.2s;
 }
 
@@ -51,58 +64,9 @@
     gap: 1rem;
     color: #c0b4bc;
     transition: linear 0.3s;
-    border: 0px;
+    border: none;
     padding: 0.4rem;
     background-color: transparent;
 
 }
 
-.likes:hover{
-    color: #ff5454;
-    transition: linear 0.3s;
-    cursor: pointer;
-    border-color: #ff5454;
-}
-
-.likes-selected{
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    color: #ff5454;
-    cursor: pointer;
-    transition: linear 0.3s;
-    padding: 0.15rem;
-    background-color: transparent;
-}
-
-.likes-selected:hover{
-    color: #c0b4bc;
-    transition: linear 0.3s;
-    cursor: pointer;
-    border-color: #c0b4bc;
-}
-
-.dislikes:hover{
-    color:#616bff;
-    transition: linear 0.3s;
-    cursor: pointer;
-}
-
-.dislikes-selected{
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    color: #616bff;
-    cursor: pointer;
-    transition: linear 0.3s;
-    border: 0px;
-    padding: 0.15rem;
-    background-color: transparent;
-}
-
-.dislikes-selected:hover{
-    color:#c0b4bc;
-    transition: linear 0.3s;
-    cursor: pointer;
-    border-color: #c0b4bc;
-}

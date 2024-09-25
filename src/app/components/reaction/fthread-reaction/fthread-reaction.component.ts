@@ -5,18 +5,21 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FthreadReaction } from './fthread-reaction';
 import { jwtDecode } from 'jwt-decode';
 import { NgClass } from '@angular/common';
+import { StorageService } from '../../../services/storage/storage.service';
+import { ModalComponent } from '../../modal/modal.component';
+import { WarningDialogComponent } from "../../dialog/warning-dialog/warning-dialog.component";
 
 @Component({
   selector: 'app-fthread-reaction',
   standalone: true,
-  imports: [ NgClass ],
+  imports: [NgClass, ModalComponent, WarningDialogComponent],
   templateUrl: './fthread-reaction.component.html',
   styleUrls: ['./fthread-reaction.component.scss']
 })
 export class FthreadReactionComponent implements OnInit{
 
 
-  constructor(private service : FthreadReactionService){}
+  constructor(private service : FthreadReactionService, private storageService: StorageService){}
 
   @Input() fthreadId: number = 0
   @Input() userId: string = ""
@@ -27,13 +30,13 @@ export class FthreadReactionComponent implements OnInit{
   score: number = 0
   @Output() scoreOutput = new EventEmitter<number>()
 
-  classLikes: string = "likes"
-  classDislikes: string = "dislikes"
+  classLikes: string = "img-like"
+  classDislikes: string = "img-dislike"
   likeCount: number = 0
   dislikeCount: number = 0
 
   ngOnInit(): void {
-    let storage = sessionStorage
+    
     var numberFThreadId : number = +this.fthreadId 
     this.service.listarPorFThread(numberFThreadId).subscribe((listaFthreadReactions) => {
       this.listaFthreadReactions = listaFthreadReactions
@@ -43,8 +46,8 @@ export class FthreadReactionComponent implements OnInit{
       this.likeCount = this.likes.length
       this.dislikeCount = this.dislikes.length
 
-      this.verifyLike(storage)
-      this.verifyDislike(storage);
+      this.verifyLike()
+      this.verifyDislike();
     })
 
     this.service.buscarScore(numberFThreadId).subscribe((score) => {
@@ -56,8 +59,8 @@ export class FthreadReactionComponent implements OnInit{
 
   
 
-  verifyLike(storage: Storage){
-    var userSession: any = storage.getItem("jwt-session")
+  verifyLike(){
+    var userSession: any = this.storageService.getItem("jwt-session")
     if(userSession != null){
       var decodedSession: any = jwtDecode(userSession)
       var userId = decodedSession.id
@@ -66,7 +69,7 @@ export class FthreadReactionComponent implements OnInit{
       this.service.acharReaction(numberFThreadId, userId).subscribe((postReaction) => {
         if(postReaction != null){
           if(postReaction.reaction == true){
-            this.classLikes = "likes-selected"
+            this.classLikes = "img-likes-selected"
           } 
         }
       })
@@ -74,8 +77,8 @@ export class FthreadReactionComponent implements OnInit{
     }
   }
 
-  verifyDislike(storage: Storage){
-    var userSession: any = storage.getItem("jwt-session")
+  verifyDislike(){
+    var userSession: any = this.storageService.getItem("jwt-session")
     if(userSession != null){
       var decodedSession: any = jwtDecode(userSession)
       var userId = decodedSession.id
@@ -84,11 +87,21 @@ export class FthreadReactionComponent implements OnInit{
       this.service.acharReaction(numberFThreadId, userId).subscribe((postReaction) => {
         if(postReaction != null){
           if(postReaction.reaction == false){
-            this.classDislikes = "dislikes-selected"
+            this.classDislikes = "img-dislikes-selected"
           } 
         }
       })
 
+    }
+  }
+
+  addLike(){
+    var userSession: any = this.storageService.getItem("jwt-session")
+    if(userSession != null){
+      var decodedSession: any = jwtDecode(userSession)
+      var userId = decodedSession.id
+    } else{
+      // ModalComponent.show = true
     }
   }
 }
