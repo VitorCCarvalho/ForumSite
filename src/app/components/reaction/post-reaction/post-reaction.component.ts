@@ -42,6 +42,8 @@ export class PostReactionComponent {
 
         this.likeCount = this.likes.length
         this.dislikeCount = this.dislikes.length
+
+        this.score = this.likeCount - this.dislikeCount
       })
 
       this.verifyLike()

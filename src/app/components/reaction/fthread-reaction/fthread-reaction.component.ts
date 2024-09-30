@@ -46,14 +46,11 @@ export class FthreadReactionComponent implements OnInit{
       this.likeCount = this.likes.length
       this.dislikeCount = this.dislikes.length
 
-      this.verifyLike()
-      this.verifyDislike();
-    })
-
-    this.service.buscarScore(numberFThreadId).subscribe((score) => {
-      this.score = score
+      this.score = this.likeCount - this.dislikeCount
       this.scoreOutput.emit(this.score)
 
+      this.verifyLike()
+      this.verifyDislike();
     })
   }
 
