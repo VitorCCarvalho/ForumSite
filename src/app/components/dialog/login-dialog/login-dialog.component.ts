@@ -1,6 +1,6 @@
 import { StorageService } from '../../../services/storage/storage.service';
 import { UserService } from './../../user/user.service';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 import { Login } from '../../user/login';
@@ -21,7 +21,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
     ])
   ]
 })
-export class LoginDialogComponent {
+export class LoginDialogComponent implements OnInit{
   formLogin = new FormGroup({
     user: new FormControl(''),
     password: new FormControl('')
@@ -31,6 +31,9 @@ export class LoginDialogComponent {
 
   status: string = "idle"
 
+  ngOnInit(){
+    console.log("abriu")
+  }
 
   constructor(private userService: UserService, private storageService: StorageService){}
 

@@ -16,7 +16,7 @@ export class ModalService {
   @Inject(DOCUMENT) private document: Document){}
 
   open(modalRef: TemplateRef<any>, contentComp: any){
-    var test = Query.
+    // var test = Query.
 
     const modalComponentFactory = this.resolver.resolveComponentFactory(ModalComponent)
     const contentViewRef = modalRef.createEmbeddedView(null)
