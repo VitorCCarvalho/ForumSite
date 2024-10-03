@@ -23,7 +23,7 @@ export class HeaderComponent {
   }
 
 
-  openModal(modalTemplate: TemplateRef<any>){
+  openModal(){
     this.modalService.open("login").subscribe()
   }
 }
