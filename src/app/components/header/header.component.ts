@@ -22,13 +22,8 @@ export class HeaderComponent {
     this.chosenDialog = chosenDialog
   }
 
-  callModal(){
-    // ModalComponent.toggle()
-  }
 
   openModal(modalTemplate: TemplateRef<any>){
-    var login_dialog =  LoginDialogComponent
-    console.log(login_dialog)
-    this.modalService.open(modalTemplate, login_dialog).subscribe((action) => console.log(action))
+    this.modalService.open("login").subscribe()
   }
 }

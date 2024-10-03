@@ -1,6 +1,7 @@
+import { ModalService } from './../../../services/modal/modal.service';
 import { StorageService } from '../../../services/storage/storage.service';
 import { UserService } from './../../user/user.service';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, TemplateRef } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 import { Login } from '../../user/login';
@@ -35,7 +36,9 @@ export class LoginDialogComponent implements OnInit{
     console.log("abriu")
   }
 
-  constructor(private userService: UserService, private storageService: StorageService){}
+  constructor(private userService: UserService,
+              private storageService: StorageService,
+              private modalService: ModalService){}
 
   onSubmit(){
     if(this.formLogin.controls['user'].value != null && this.formLogin.controls['password'].value != null){
@@ -59,7 +62,9 @@ export class LoginDialogComponent implements OnInit{
     })
   }
 
-  switchDialog(){
-    this.chosenDialog.emit("signup")
+  switchDialog(modalTemplate: TemplateRef<any>){
+    this.modalService.open("signup").subscribe()  
   }
+
+
 }

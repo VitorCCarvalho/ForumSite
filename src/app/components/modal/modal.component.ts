@@ -1,5 +1,8 @@
+import { LoginDialogComponent } from './../dialog/login-dialog/login-dialog.component';
 import { trigger, transition, style, animate } from '@angular/animations';
-import { Component, ComponentRef, ElementRef, EventEmitter, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild, ViewContainerRef } from '@angular/core';
+import { SignupDialogComponent } from '../dialog/signup-dialog/signup-dialog.component';
+import { WarningDialogComponent } from '../dialog/warning-dialog/warning-dialog.component';
 
 @Component({
   selector: 'app-modal',
@@ -29,15 +32,53 @@ import { Component, ComponentRef, ElementRef, EventEmitter, Output } from '@angu
     ]),
   ]
 })
-export class ModalComponent {
+export class ModalComponent implements OnInit{
   show: boolean = false
 
-  content!: ComponentRef<Component> 
+  @ViewChild('innerComponent', { read: ViewContainerRef, static: true }) innerComponent!: ViewContainerRef;
 
   @Output() closeEvent = new EventEmitter();
-  @Output() submitEvent = new EventEmitter();
+
+  chosenDialog!: string
 
   constructor(private elementRef: ElementRef){}
+
+  ngOnInit(): void {
+    this.loadInnerComponent();
+
+  }
+
+  loadInnerComponent(): void {
+    this.innerComponent.clear()
+
+    switch(this.chosenDialog){
+      case "login":
+        let login = this.innerComponent.createComponent(LoginDialogComponent);
+        login.instance.chosenDialog.subscribe((resp) => {
+          this.chosenDialog = resp;
+          this.loadInnerComponent()
+        })
+        break;
+      case "signup":
+        let signup = this.innerComponent.createComponent(SignupDialogComponent);
+        signup.instance.chosenDialog.subscribe((resp) => {
+          this.chosenDialog = resp;
+          this.loadInnerComponent()
+        })
+        break;
+      case "warning":
+        this.innerComponent.createComponent(WarningDialogComponent);
+        break;
+      default:
+        this.innerComponent.createComponent(WarningDialogComponent)
+    }
+    
+  }
+
+  changeInnerComponent(dialog: string){
+    this.chosenDialog = dialog
+    this.loadInnerComponent()
+  }
 
   close(): void{
     this.elementRef.nativeElement.remove()

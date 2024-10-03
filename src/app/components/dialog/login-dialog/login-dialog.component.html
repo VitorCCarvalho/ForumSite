@@ -11,7 +11,7 @@
                 <button type="submit" class="btn-submit">Login</button>
             </form>
         
-            <button class="btn-switch-dialog" (click)="switchDialog()">Não possui uma conta? Cadastre-se</button>
+            <button class="btn-switch-dialog" (click)="switchDialog(modalTemplate)">Não possui uma conta? Cadastre-se</button>
         </div>
         }
         @case("loading"){
@@ -31,3 +31,6 @@
 
 
 </div>
+
+<ng-template #modalTemplate>
+</ng-template>

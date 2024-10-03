@@ -1,34 +1,51 @@
-import { Component, ComponentFactoryResolver, Inject, Injectable, Injector, Query, TemplateRef } from '@angular/core';
+import { DialogFactoryService } from './../dialog-factory/dialog-factory.service';
+import { ApplicationRef, Component, ComponentFactoryResolver, ComponentRef, Inject, Injectable, Injector, Query, TemplateRef } from '@angular/core';
 import { ModalComponent } from '../../components/modal/modal.component';
 import { DOCUMENT } from '@angular/common';
 import { Subject } from 'rxjs';
-import { LoginDialogComponent } from '../../components/dialog/login-dialog/login-dialog.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ModalService {
   private modalNotifier?: Subject<string>
+  private modalComponentRef!: ComponentRef<any>;
 
   constructor(
     private resolver: ComponentFactoryResolver, 
     private injector: Injector,
-  @Inject(DOCUMENT) private document: Document){}
+    private appRef: ApplicationRef,
+    @Inject(DOCUMENT) private document: Document){}
 
-  open(modalRef: TemplateRef<any>, contentComp: any){
-    // var test = Query.
+  open(dialog: string){
+    if(this.modalComponentRef){
+      console.log("entrou")
+      this.closeModal();
+    }
 
     const modalComponentFactory = this.resolver.resolveComponentFactory(ModalComponent)
-    const contentViewRef = modalRef.createEmbeddedView(null)
-    const modalComponent =  modalComponentFactory.create(this.injector, [
-      contentViewRef.rootNodes,
+
+    
+    // const contentViewRef = modalRef.createEmbeddedView(null)
+    this.modalComponentRef =  modalComponentFactory.create(this.injector, [
+      // contentViewRef.rootNodes,
     ])
 
-    modalComponent.hostView.detectChanges()
+    this.appRef.attachView(this.modalComponentRef.hostView);
+    const domElem = (this.modalComponentRef.hostView as any).rootNodes[0] as HTMLElement;
+    this.modalComponentRef.instance.chosenDialog = dialog
+    document.body.appendChild(domElem);
 
-    this.document.body.appendChild(modalComponent.location.nativeElement)
 
-    modalComponent.instance.closeEvent.subscribe(() => this.closeModal());
+    
+
+    // this.modalComponentRef.hostView.detectChanges()
+
+    // this.document.body.appendChild(this.modalComponentRef.location.nativeElement)
+
+    
+
+    this.modalComponentRef.instance.closeEvent.subscribe(() => this.closeModal());
 
     this.modalNotifier = new Subject()
 
@@ -38,5 +55,6 @@ export class ModalService {
     
   closeModal(){
     this.modalNotifier?.complete();
+    this.modalComponentRef.destroy();
   }
 }
