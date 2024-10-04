@@ -1,0 +1,49 @@
+<form (ngSubmit)="onSubmit()" class="post-form">
+    
+    <div class="title-wrapper">
+      <label for="text-title">Título</label>
+      <input
+        type="text"
+        id="text-title"
+        class="text-title"
+        name="title"
+        placeholder="Digite o título do post"
+        required
+      />
+    </div>
+
+    <div class="content-wrapper">
+      <label for="text-content">Texto</label>
+      <textarea
+        id="text-content"
+        class="text-content"
+        name="content"
+        placeholder="Escreva o conteúdo da thread"
+        rows="6"
+        required
+      ></textarea>
+    </div>
+
+    <!-- <div class="form-group">
+      <label>Imagens</label>
+      <input
+        type="file"
+        class="form-control-file"
+        (change)="onFileSelected($event)"
+        accept="image/*"
+        multiple
+      />
+      <button type="button" class="btn btn-secondary" (click)="fileInput.click()">
+        Adicionar Imagens
+      </button>
+    </div>
+
+    <div class="form-group" *ngIf="images.length > 0">
+      <label>Imagens Selecionadas:</label>
+      <div class="image-preview-container">
+        <img *ngFor="let image of images" [src]="image" class="image-preview" />
+      </div>
+    </div> -->
+
+    <button type="submit" class="btn btn-primary">Publicar Thread</button>
+  </form>
