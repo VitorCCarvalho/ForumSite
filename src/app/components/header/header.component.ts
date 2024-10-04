@@ -1,6 +1,5 @@
-import { Login } from './../user/login';
 import { ModalService } from './../../services/modal/modal.service';
-import { Component, TemplateRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { LoginDialogComponent } from "../dialog/login-dialog/login-dialog.component";
 import { ModalComponent } from '../modal/modal.component';
