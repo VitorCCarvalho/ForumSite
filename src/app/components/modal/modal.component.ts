@@ -41,6 +41,8 @@ export class ModalComponent implements OnInit{
 
   chosenDialog!: string
 
+  message!: string
+
   constructor(private elementRef: ElementRef){}
 
   ngOnInit(): void {
@@ -67,7 +69,11 @@ export class ModalComponent implements OnInit{
         })
         break;
       case "warning":
-        this.innerComponent.createComponent(WarningDialogComponent);
+        const teste = this.innerComponent.createComponent(WarningDialogComponent);
+        // this.innerComponent.createComponent(WarningDialogComponent);
+        if(this.message){
+          teste.instance.message = this.message
+        }
         break;
       default:
         this.innerComponent.createComponent(WarningDialogComponent)

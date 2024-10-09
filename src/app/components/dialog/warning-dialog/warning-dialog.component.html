@@ -1,6 +1,10 @@
 <div class="warning-dialog">
     <img class="img-warning" src="../../../../assets/png/icon-warning.png" alt="">
     <div class="txt-warning">
-        <ng-content></ng-content>
+        @if(message){
+            {{message}}
+        } @else {
+            Ocorreu um erro, por favor contate o desenvolvedor.
+        }
     </div>
 </div>

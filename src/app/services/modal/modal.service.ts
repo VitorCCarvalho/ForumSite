@@ -16,33 +16,22 @@ export class ModalService {
     private appRef: ApplicationRef,
     @Inject(DOCUMENT) private document: Document){}
 
-  open(dialog: string){
+  open(dialog: string, message?: string){
     if(this.modalComponentRef){
-      console.log("entrou")
       this.closeModal();
     }
 
     const modalComponentFactory = this.resolver.resolveComponentFactory(ModalComponent)
 
-    
-    // const contentViewRef = modalRef.createEmbeddedView(null)
-    this.modalComponentRef =  modalComponentFactory.create(this.injector, [
-      // contentViewRef.rootNodes,
-    ])
+    this.modalComponentRef =  modalComponentFactory.create(this.injector)
 
     this.appRef.attachView(this.modalComponentRef.hostView);
     const domElem = (this.modalComponentRef.hostView as any).rootNodes[0] as HTMLElement;
     this.modalComponentRef.instance.chosenDialog = dialog
+    if(message){
+      this.modalComponentRef.instance.message = message
+    }
     document.body.appendChild(domElem);
-
-
-    
-
-    // this.modalComponentRef.hostView.detectChanges()
-
-    // this.document.body.appendChild(this.modalComponentRef.location.nativeElement)
-
-    
 
     this.modalComponentRef.instance.closeEvent.subscribe(() => this.closeModal());
 

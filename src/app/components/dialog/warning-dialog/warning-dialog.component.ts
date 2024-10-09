@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './warning-dialog.component.scss'
 })
 export class WarningDialogComponent {
-
+  message!: string
 }
