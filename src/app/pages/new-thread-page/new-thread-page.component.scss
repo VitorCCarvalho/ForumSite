@@ -1,0 +1,52 @@
+.new-thread-wrapper{
+    display: flex;
+    justify-content: center;
+}
+
+.form-new-thread {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+
+    align-self: center;
+    width:80%;
+}
+
+.form-new-thread .title-wrapper{
+    width: 100%;
+
+}
+
+.form-new-thread input{
+    width: 100%;
+    background-color: transparent;
+    border: 0.5px solid var(--border-black);
+    border-radius: 25px;
+    height: 32px;
+}
+
+.form-new-thread .content-wrapper{
+    width: 100%;
+
+}
+
+.form-new-thread textarea{
+    width: 100%;
+    background-color: transparent;
+    border: 0.5px solid var(--border-black);
+    border-radius: 25px;
+
+    padding: 10px;
+}
+
+.btn-submit{
+    align-self: flex-end;
+
+    background-color: transparent;
+    border: 0.5px solid var(--border-black);
+    border-radius: 25px;
+    height: 32px;
+
+    cursor: pointer
+}
