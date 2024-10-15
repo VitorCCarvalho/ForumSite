@@ -3,7 +3,7 @@
             <div class="line-title">
                 <div class="section-title">{{forum.name}}</div>
                 <a class="link-newthread" (click)="verifySession()">
-                    <p class="text-light no-decoration" routerLink="new-thread-page">Criar Thread</p>
+                    <p class="text-light no-decoration" (click)="verifySession()">Criar Thread</p>
                 </a>
             </div>
             <div class="line-desc">

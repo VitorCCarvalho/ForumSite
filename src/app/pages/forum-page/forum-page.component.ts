@@ -2,17 +2,18 @@ import { FThread } from '../../components/fthread/fthread';
 import { Component, OnInit } from '@angular/core';
 import { FThreadService } from '../../components/fthread/fthread.service';
 import { ForumService } from '../../components/forum/forum.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Forum } from '../../components/forum/forum';
 import { FthreadComponent } from '../../components/fthread/fthread.component';
 import { NgClass } from '@angular/common';
 import { StorageService } from '../../services/storage/storage.service';
+import { ModalService } from '../../services/modal/modal.service';
 
 
 @Component({
   selector: 'app-forum-page',
   standalone: true,
-  imports: [ FthreadComponent, NgClass ],
+  imports: [ FthreadComponent, NgClass, RouterLink ],
   templateUrl: './forum-page.component.html',
   styleUrls: ['./forum-page.component.scss']
 })
@@ -27,7 +28,8 @@ export class ForumPageComponent implements OnInit{
               private forumService: ForumService, 
               private storageService: StorageService,
               private route: ActivatedRoute, 
-              private router: Router){}
+              private router: Router,
+              private modalService: ModalService){}
 
   ngOnInit(): void {
     var forumId = this.route.snapshot.queryParamMap.get('forumId');
@@ -53,9 +55,10 @@ export class ForumPageComponent implements OnInit{
 
   verifySession(){
     if(this.storageService.getItem("jwt-session") != null){
-      this.router.navigate(['/newThread-page'], {queryParams: {forumId:this.forum.id ? this.forum.id : -1}})
+      this.router.navigate(['/new-thread-page'], {queryParams: {forumId:this.forum.id ? this.forum.id : -1}})
     }else {
-      // this.sidebar.openLoginDialog();
+      console.log(this.storageService.getItem("jwt-session"))
+      this.modalService.open("login");
     }
   }
 }
