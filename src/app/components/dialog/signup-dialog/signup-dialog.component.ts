@@ -70,7 +70,6 @@ export class SignupDialogComponent {
     }
     this.userService.criar(signup).subscribe((response) => {
       this.status = "completed"
-      console.log(response)
     })
 
   }

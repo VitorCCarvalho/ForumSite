@@ -33,7 +33,6 @@ export class LoginDialogComponent implements OnInit{
   status: string = "idle"
 
   ngOnInit(){
-    console.log("abriu")
   }
 
   constructor(private userService: UserService,

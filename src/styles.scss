@@ -87,4 +87,14 @@ body{
         font-size: 1.3rem;
         font-weight: 700;
     }
+
+    .btn-primary{
+        background-color: #000000;
+        cursor: pointer;
+    }
+
+    .btn-primary:hover{
+        background-color: #28242c;
+        transition: 0.2s linear;
+    }
 }
