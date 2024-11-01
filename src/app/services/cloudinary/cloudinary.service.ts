@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class CloudinaryService {
 
-  private readonly url = 'https://api.cloudinary.com/v1_1/dpee5cimt/upload'
+  private readonly url = 'https://api.cloudinary.com/v1_1/dpee5cimt/image/upload'
 
   cld = new Cloudinary({
     cloud: {
@@ -22,11 +22,22 @@ export class CloudinaryService {
     return this.cld.image('cld-sample')
   }
 
-  uploadImg(imageFile: File): Observable<any>{
+  getFThreadImage(fthreadId: number){
+    let imgName = "fthread_"
+  }
+
+  uploadImg(imageFile: File, imgName: string): any{
     const formData = new FormData()
     formData.append('file', imageFile)
+    formData.append('upload_preset', 'dfrgtzpm');
 
-    return this.http.post(this.url, formData)
+    fetch(this.url, {
+      method: 'POST',
+      body: formData
+    }).then((response) => {
+      return response.text()
+    })
+    
   }
 
 }
