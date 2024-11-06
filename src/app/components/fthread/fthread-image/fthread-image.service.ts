@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class FthreadImageService {
 
-  private readonly url =  API + '/fthread'
+  private readonly url =  API + '/fthreadimage'
 
   constructor(private http: HttpClient) { }
 
