@@ -80,8 +80,8 @@ export class PostReactionComponent {
             this.classDislikes = "img-dislikes-selected"
           } 
         }
-      })
-
+      }
+      )
     }
 
   }
