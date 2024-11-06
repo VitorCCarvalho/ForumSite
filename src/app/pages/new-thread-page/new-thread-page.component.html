@@ -1,5 +1,5 @@
 <div class="new-thread-wrapper">
-  <form (ngSubmit)="onSubmit()" class="form-new-thread">
+  <form [formGroup]="formNewThread" (ngSubmit)="onSubmit()" class="form-new-thread">
     
     <div class="title-wrapper">
       <input
@@ -8,6 +8,7 @@
         class="text-title"
         name="title"
         placeholder="Título"
+        formControlName="title"
         required
       />
     </div>
@@ -19,35 +20,43 @@
         name="content"
         placeholder="Corpo"
         rows="6"
+        formControlName="text"
         required
       ></textarea>
     </div>
 
-    <div class="form-group">
-      <label>Imagens</label>
+    <div class="imgs-wrapper">
+      <div class="img-title">Imagens</div>
       <input
+        id="input-img"
         type="file"
-        class="form-control-file"
+        class="input-img"
         (change)="onFileSelected($event)"
         accept="image/png, image/jpeg"
         multiple
+        #imgInput
       />
 
-      @if(imagePreviews.length > 0){
-        <div class="form-group">
-          <label>Imagens Selecionadas:</label>
-          <div class="image-preview-container">
-            @for(image of imagePreviews; track image){
-              <img [src]="image" class="image-preview" />
-            }
-            
-          </div>
-        </div>
-      }
+      <div class="imgs-preview-wrapper">
+        @if(imagePreviews.length > 0){
+          <div class="img-preview-wrapper">
+            <div class="image-preview-container">
+              @for(image of imagePreviews; track image){
+                <img [src]="image" class="img-preview"  />
 
+              }
+              
+            </div>
+          </div>
+        }
+
+        <button type="button" class="btn-add-img btn-primary" (click)="imgInput.click()">+</button>
+      </div>
+      
+      
     </div>
     
-    <button type="submit" class="btn-submit">Publicar Thread</button>
+    <button type="submit" class="btn-submit btn-primary" >Publicar Thread</button>
   </form>
 </div>
 
