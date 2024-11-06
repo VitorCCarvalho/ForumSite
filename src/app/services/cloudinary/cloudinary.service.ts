@@ -26,18 +26,12 @@ export class CloudinaryService {
     let imgName = "fthread_"
   }
 
-  uploadImg(imageFile: File, imgName: string): any{
+  uploadImg(imageFile: File, imgName: string): Observable<string>{
     const formData = new FormData()
     formData.append('file', imageFile)
     formData.append('upload_preset', 'dfrgtzpm');
 
-    fetch(this.url, {
-      method: 'POST',
-      body: formData
-    }).then((response) => {
-      return response.text()
-    })
-    
+    return this.http.post<string>(this.url, formData)
   }
 
 }
