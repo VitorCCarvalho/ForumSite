@@ -10,5 +10,5 @@ export interface FThread {
   userId?: string
   locked?: boolean
   posts?: Post[]
-  score: number
+  score?: number
 }
