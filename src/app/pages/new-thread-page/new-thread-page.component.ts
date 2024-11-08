@@ -12,6 +12,7 @@ import { jwtDecode } from 'jwt-decode';
 import { FthreadImageService } from '../../components/fthread/fthread-image/fthread-image.service';
 import { FthreadImage } from '../../components/fthread/fthread-image/fthread-image';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-new-thread-page',
@@ -52,6 +53,21 @@ export class NewThreadPageComponent implements OnInit{
       this.forumId = +forumId
     }
   }
+
+  postFThreadObservable(newFThread: FThread): Observable<any>{
+    return new Observable(() => {
+      this.fthreadService.criar(newFThread).subscribe((response: FThread) => {
+        if(response.id != null){
+          this.newFThreadId = response.id
+  
+          this.uploadImages();
+          
+        }
+        
+      })
+    })
+    
+  }
   
   onSubmit(){
     if(this.formNewThread.controls['title'].value != null &&
@@ -68,16 +84,12 @@ export class NewThreadPageComponent implements OnInit{
           userId: userId
         }
 
-        this.fthreadService.criar(newFThread).subscribe((response: FThread) => {
-          if(response.id != null){
-            this.newFThreadId = response.id
+        this.postFThreadObservable(newFThread).subscribe(() => {
+          this.router.navigate(['/fthread-page'], {queryParams: {fthreadId: this.newFThreadId}})
 
-            this.uploadImages();
-            
-            this.router.navigate(['/fthread-page'], {queryParams: {fthreadId: this.newFThreadId}})
-          }
-          
         })
+
+        
 
       }
       
@@ -93,17 +105,17 @@ export class NewThreadPageComponent implements OnInit{
         this.cloudinaryService.uploadImg(this.imgs[i], imgName).subscribe((response: any) => {
           this.createFThreadImages(response.public_id);
         })
-
       }
     }
   }
 
   createFThreadImages(img_id: string){
     let fThreadImg: FthreadImage = {
-      FThreadId: this.newFThreadId,
-      ImgId: img_id
+      fThreadId: this.newFThreadId,
+      imgId: img_id
     }
-    this.fThreadImageService.criar(fThreadImg);
+    this.fThreadImageService.criar(fThreadImg).subscribe((response) => {
+    });
   }
 
   onFileSelected(event: any) {

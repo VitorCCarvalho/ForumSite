@@ -9,6 +9,8 @@ import { User } from '../../components/user/user';
 import { FthreadReactionComponent } from '../../components/reaction/fthread-reaction/fthread-reaction.component';
 import { PostComponent } from '../../components/post/post.component';
 import { NgClass } from '@angular/common';
+import { FthreadImageService } from '../../components/fthread/fthread-image/fthread-image.service';
+import { FthreadImage } from '../../components/fthread/fthread-image/fthread-image';
 
 
 
@@ -37,6 +39,8 @@ export class FthreadPageComponent implements OnInit{
     score: 0
   };
 
+  fThreadImages: FthreadImage[] = []
+
   user: User = {
     id: "",
     name: "",
@@ -53,6 +57,7 @@ export class FthreadPageComponent implements OnInit{
 
   constructor(private postService: PostService, 
               private fthreadService: FThreadService, 
+              private fthreadImageService: FthreadImageService,
               private userService: UserService, 
               private route: ActivatedRoute,
               private router: Router){}
@@ -78,6 +83,12 @@ export class FthreadPageComponent implements OnInit{
 
         this.finishLoading = "loaded"
       })
+
+      this.fthreadImageService.listarPorFThread(this.fthreadId).subscribe((response) => {
+        this.fThreadImages = response
+        console.log(response)
+      })
+
     }
   }
 
