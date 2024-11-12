@@ -110,15 +110,9 @@ export class FthreadPageComponent implements OnInit{
 
       this.postService.criar(newPost).subscribe(() => {
         this.router.navigate(['fthread-page'], { queryParams: {fthreadId: this.fthread.id}})
-        // this.openSnackBar()
       })
 
     }
   }
 
-  // openSnackBar() {
-  //   this._snackBar.openFromComponent(SnackBarComponent, {
-  //     duration: 2000,
-  //   });
-  // }
 }

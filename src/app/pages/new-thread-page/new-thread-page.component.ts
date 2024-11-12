@@ -104,17 +104,6 @@ export class NewThreadPageComponent implements OnInit{
           toArray()
         )
       }
-      
-
-      // if(this.imgs.length > 0){
-      //   for(let i = 0; i < this.imgs.length; i ++){
-      //     let imgName = "fthread_" + this.newFThreadId + "_img_" + i.toString();
-      //     let observable = this.cloudinaryService.uploadImg(this.imgs[i], imgName)
-
-      //     observables.push(observable)
-      //   }
-      //   return forkJoin(observables)
-      // }
      
     }
   
