@@ -1,6 +1,6 @@
+import { FThread } from './../../components/fthread/fthread';
 import { PostService } from '../../components/post/post.service';
-import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { FThread } from '../../components/fthread/fthread';
+import { Component, OnInit } from '@angular/core';
 import { Post } from '../../components/post/post';
 import { FThreadService } from '../../components/fthread/fthread.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -11,13 +11,17 @@ import { PostComponent } from '../../components/post/post.component';
 import { NgClass } from '@angular/common';
 import { FthreadImageService } from '../../components/fthread/fthread-image/fthread-image.service';
 import { FthreadImage } from '../../components/fthread/fthread-image/fthread-image';
+import { CloudinaryService } from '../../services/cloudinary/cloudinary.service';
+import { forkJoin, from, mergeMap, Observable, switchMap, toArray } from 'rxjs';
+import {CloudinaryModule} from '@cloudinary/ng';
+import { CloudinaryImage } from '@cloudinary/url-gen';
 
 
 
 @Component({
   selector: 'app-fthread-page',
   standalone: true,
-  imports: [FthreadReactionComponent, PostComponent, NgClass],
+  imports: [FthreadReactionComponent, PostComponent, NgClass, CloudinaryModule],
   templateUrl: './fthread-page.component.html',
   styleUrls: ['./fthread-page.component.scss']
 })
@@ -41,6 +45,8 @@ export class FthreadPageComponent implements OnInit{
 
   fThreadImages: FthreadImage[] = []
 
+  cloudinaryImages: CloudinaryImage[] = []
+
   user: User = {
     id: "",
     name: "",
@@ -58,40 +64,64 @@ export class FthreadPageComponent implements OnInit{
   constructor(private postService: PostService, 
               private fthreadService: FThreadService, 
               private fthreadImageService: FthreadImageService,
+              private cloudinaryService: CloudinaryService,
               private userService: UserService, 
               private route: ActivatedRoute,
               private router: Router){}
   
   ngOnInit(): void {
     var fthreadId = this.route.snapshot.queryParamMap.get('fthreadId');
+
     if(fthreadId){
       this.fthreadId = +fthreadId
       this.postService.listarPorFThread(this.fthreadId).subscribe((listaPosts) => {
         this.listaPosts = listaPosts
         this.commentCount = listaPosts.length
 
-        this.fthreadService.buscarPorId(this.fthreadId).subscribe((fthread) => {
-          this.fthread = fthread
-
-          if(this.fthread.userId){
-            this.userService.buscarPorId(this.fthread.userId).subscribe((user) =>{
-              this.user = user
-            })
-          }
+        this.fthreadService.buscarPorId(this.fthreadId).pipe( 
+          switchMap((resp1) => 
+            this.setFThreadAndReturnId(resp1)
+          ),
+          switchMap((resp2) =>
+            this.fthreadImageService.listarPorFThread(resp2)
+          ),
+          switchMap((resp3) =>
+            this.getCloudinaryImages(resp3)
+          )
+        ).subscribe((resp4) => {
+          
           
         })
+
 
         this.finishLoading = "loaded"
       })
 
-      this.fthreadImageService.listarPorFThread(this.fthreadId).subscribe((response) => {
-        this.fThreadImages = response
-        console.log(response)
-      })
+      
 
     }
   }
 
+  setFThreadAndReturnId(fThread: FThread): Observable<number>{
+    this.fthread = fThread
+
+    let observable =  new Observable<number>((resp) =>
+      resp.next(fThread.id)
+    )
+
+    if(fThread.id != null){
+      return observable
+    }
+    return new Observable()
+  }
+
+  getCloudinaryImages(fthreadImages: FthreadImage[]): Observable<CloudinaryImage[]>{
+    let requisicoesFThreadImages = fthreadImages.map(img => this.cloudinaryService.getImage(img.imgId))
+
+
+    return forkJoin(requisicoesFThreadImages)
+
+  }
 
 
   sendReply(){

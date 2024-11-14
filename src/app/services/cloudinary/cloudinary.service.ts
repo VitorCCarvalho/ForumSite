@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Cloudinary, CloudinaryImage } from '@cloudinary/url-gen';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -22,8 +22,12 @@ export class CloudinaryService {
     return this.cld.image('cld-sample')
   }
 
-  getFThreadImage(fthreadId: number){
-    let imgName = "fthread_"
+  getImage(imgId: string): Observable<CloudinaryImage>{
+    return new Observable<CloudinaryImage>((resp) => {
+      resp.next(this.cld.image(imgId))
+    }
+      
+    )
   }
 
   uploadImg(imageFile: File, imgName: string): Observable<string>{

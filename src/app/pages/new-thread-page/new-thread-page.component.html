@@ -38,22 +38,19 @@
       />
 
       <div class="imgs-preview-wrapper">
-        @if(imagePreviews.length > 0){
-          <div class="img-preview-wrapper">
-            <div class="image-preview-container">
-              @for(image of imagePreviews; track image){
-                <img [src]="image" class="img-preview"  />
+        <div class="img-preview-wrapper">
+          <div class="image-preview-container">
+            @for(image of imagePreviews; track image){
+              <img [src]="image" class="img-preview"  />
 
-              }
-              
-            </div>
+            }
+            
           </div>
-        }
 
         <button type="button" class="btn-add-img btn-primary" (click)="imgInput.click()">+</button>
       </div>
       
-      
+      </div>
     </div>
     
     <button type="submit" class="btn-submit btn-primary" >Publicar Thread</button>

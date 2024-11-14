@@ -16,7 +16,14 @@
     </div>
 
     <div class="imgs-wrapper">
-        
+        <div class="img-preview-wrapper">
+            <div class="image-preview-container">
+              @for(image of cloudinaryImages; track image){
+                <advanced-image [cldImg]="image" class="img-preview"></advanced-image>
+
+              }
+              
+            </div>
     </div>
     
     <form class="form-reply" (submit)="sendReply()">
