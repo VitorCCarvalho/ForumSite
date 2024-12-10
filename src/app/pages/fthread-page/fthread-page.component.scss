@@ -43,6 +43,22 @@
     height: 1.5rem;
 }
 
+.imgs-preview-wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    gap: 8px;
+}
+
+.imgs-preview-wrapper .img-preview{
+    width: 128px;
+    height: 128px;
+    border: 0.5px solid var(--border-black);
+    border-radius: 25px;
+}
+
 .comment-wrapper{
     background-color: var(--bg-btn);
     display: flex;
